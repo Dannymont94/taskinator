@@ -145,6 +145,7 @@ footer {
   position: relative;
   top: -3px;
   box-shadow: 0 3px var(--grey);
+  width: 150px;
 }
 
 .btn:hover {
@@ -222,6 +223,10 @@ footer {
   }
 
   form .form-group button {
+    width: 100%;
+  }
+
+  .text-input {
     width: 100%;
   }
 
