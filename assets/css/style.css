@@ -143,18 +143,18 @@ footer {
   font-size: 2.2rem;
   border-radius: 12px;
   position: relative;
-  top: -3px;
+  top: 0;
   box-shadow: 0 3px var(--grey);
   width: 150px;
 }
 
 .btn:hover {
   box-shadow: 0 2px var(--grey);
-  top: -2px;
+  top: 2px;
 }
 .btn:active {
   box-shadow: 0 0px var(--grey);
-  top: 0;
+  top: 4px;
 }
 
 .edit-btn,
@@ -174,7 +174,7 @@ footer {
   padding: 12px;
   width: 100%;
   max-width: 100%;
-  margin: 0;
+  margin: 5px 0;
   border: 2px solid var(--grey);
   border-radius: 12px;
   -moz-appearance: none;
