@@ -44,11 +44,11 @@ form {
   flex-wrap: wrap;
 }
 
-form input {
+.text-input {
   outline: none;
   border: none;
   padding: 12px;
-  width: 100%;
+  width: 30%;
   font-size: 2.2rem;
   border: 2px solid var(--grey);
   border-radius: 12px;
@@ -149,12 +149,12 @@ footer {
 }
 
 .btn:hover {
-  box-shadow: 0 2px var(--grey);
-  top: 2px;
+  background: var(--tertiary);
+  top: 0px;
 }
 .btn:active {
   box-shadow: 0 0px var(--grey);
-  top: 4px;
+  top: 3px;
 }
 
 .edit-btn,
@@ -166,9 +166,14 @@ footer {
   color: #fff;
 }
 
+.edit-btn:hover,
+.delete-btn:hover {
+  background: var(--primary);
+}
+
 .select-dropdown,
 .select-status {
-  display: block;
+  display: inline-block;
   font-size: 2.2rem;
   color: #444;
   padding: 12px;
@@ -185,6 +190,10 @@ footer {
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
+}
+
+.select-dropdown {
+  width: 30%;
 }
 
 .select-status {
@@ -227,6 +236,10 @@ footer {
   }
 
   .text-input {
+    width: 100%;
+  }
+
+  .select-dropdown {
     width: 100%;
   }
 
