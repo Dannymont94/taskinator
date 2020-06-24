@@ -16,13 +16,32 @@ var taskFormHandler = function(){
     }
     // reset form to default after submitting task
     formEl.reset();
-    // package up data as an object
-    var taskDataObj = {
-        name: taskNameInput,
-        type: taskTypeInput
-    };
-    // send as argument to createTaskEl
-    createTaskEl(taskDataObj);
+    // check for data attribute in form to see if user is editing an existing task
+    var isEdit = formEl.hasAttribute("data-task-id");
+    // has data attribute, so get task id and call function to complete edit process
+    if (isEdit){
+        var taskId = formEl.getAttribute("data-task-id");
+        completeEditTask(taskNameInput, taskTypeInput, taskId);
+    }
+    // no data attribute, so create object as normal and pass to createTaskEl function
+    else {
+        var taskDataObj = {
+            name: taskNameInput,
+            type: taskTypeInput
+        };
+        createTaskEl(taskDataObj);
+    }
+};
+
+var completeEditTask = function(taskName, taskType, taskId){
+    //find the matching task list item
+    var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+    // set new values
+    taskSelected.querySelector("h3.task-name").textContent = taskName;
+    taskSelected.querySelector("span.task-type").textContent = taskType;
+    // exit edit mode
+    formEl.removeAttribute("data-task-id");
+    document.querySelector("#save-task").textContent = "Add Task";
 };
 
 var createTaskEl = function(taskDataObj){
@@ -77,8 +96,6 @@ var createTaskActions = function(taskId) {
     return actionContainerEl;
 };
 
-formEl.addEventListener("submit", taskFormHandler);
-
 // executes edit and delete button functions
 var taskButtonHandler = function(event) {
     var targetEl = event.target;
@@ -100,7 +117,7 @@ var editTask = function(taskId) {
     // load previously entered values into form
     document.querySelector("input[name='task-name']").value = taskName;
     document.querySelector("select[name='task-type']").value = taskType;
-    //
+    // display to user that form is in edit mode
     document.querySelector("#save-task").textContent = "Save Changes";
     formEl.setAttribute("data-task-id", taskId);
 };
@@ -110,5 +127,7 @@ var deleteTask = function(taskId) {
     var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
     taskSelected.remove();
 };
+
+formEl.addEventListener("submit", taskFormHandler);
 
 pageContentEl.addEventListener("click", taskButtonHandler);
