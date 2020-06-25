@@ -146,6 +146,7 @@ footer {
   top: 0;
   box-shadow: 0 3px var(--grey);
   width: 150px;
+  box-sizing: content-box;
 }
 
 .btn:hover {
@@ -243,8 +244,11 @@ footer {
     width: 100%;
   }
 
+  .btn {
+    box-sizing: border-box;
+  }
+
   .task-list-wrapper {
     flex-basis: 100%;
   }
-
 }
