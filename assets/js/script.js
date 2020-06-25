@@ -268,7 +268,6 @@ var loadTasks = function() {
     // iterate through tasks array and create tasks elements on the page from it
     for (var i = 0; i < tasks.length; i++) {
         tasks[i].id = taskIdCounter;
-        console.log(tasks[i]);
         var listItemEl = document.createElement("li");
         listItemEl.className = "task-item";
         listItemEl.setAttribute("data-task-id", tasks[i].id);
@@ -290,7 +289,6 @@ var loadTasks = function() {
             tasksCompletedEl.appendChild(listItemEl);
         }
         taskIdCounter++;
-        console.log(listItemEl);
     }
 };
 
@@ -309,4 +307,3 @@ pageContentEl.addEventListener("dragleave", dragLeaveHandler);
 pageContentEl.addEventListener("drop", dropTaskHandler);
 
 loadTasks();
-console.log(tasks);
