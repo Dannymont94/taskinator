@@ -155,10 +155,14 @@ var taskStatusChangeHandler = function(event){
 };
 
 var dragTaskHandler = function(event) {
-    // get task item's id
-    var taskId = event.target.getAttribute("data-task-id");
-    // set taskId as dataTransfer value
-    event.dataTransfer.setData("text/plain", taskId);
+    console.log(event.target);
+    console.log(typeof event.target);
+    if (typeof event.target !== "string") {
+        // get task item's id
+        var taskId = event.target.getAttribute("data-task-id");
+        // set taskId as dataTransfer value
+        event.dataTransfer.setData("text/plain", taskId);
+    }
 };
 
 var dropZoneDragHandler = function(event) {
@@ -166,6 +170,13 @@ var dropZoneDragHandler = function(event) {
     if (taskListEl) {
         event.preventDefault();
         taskListEl.setAttribute("style", "background: rgba(68, 233, 255, 0.7); border-style: dashed;");
+    }
+};
+
+var dragLeaveHandler = function(event) {
+    var taskListsEl = event.target.closest(".task-list");
+    if (taskListsEl) {
+    taskListsEl.removeAttribute("style");
     }
 };
 
@@ -194,13 +205,6 @@ var dropTaskHandler = function(event) {
     dropZoneEl.appendChild(draggableElement);
 }
 
-var dragLeaveHandler = function(event) {
-    var taskListsEl = event.target.closest(".task-list");
-    if (taskListsEl) {
-    taskListsEl.removeAttribute("style");
-    }
-};
-
 formEl.addEventListener("submit", taskFormHandler);
 
 pageContentEl.addEventListener("click", taskButtonHandler);
@@ -211,6 +215,7 @@ pageContentEl.addEventListener("dragstart", dragTaskHandler);
 
 pageContentEl.addEventListener("dragover", dropZoneDragHandler);
 
+pageContentEl.addEventListener("dragleave", dragLeaveHandler);
+
 pageContentEl.addEventListener("drop", dropTaskHandler);
 
-pageContentEl.addEventListener("dragleave", dragLeaveHandler);
